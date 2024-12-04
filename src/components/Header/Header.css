@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 11px;
+    height: 80px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, .1), 0 1px 4px 0 rgba(0, 0, 0, .4);
+
+    .header__logo {
+        width: 50px;
+    }
+
+    .header__title {
+        font-weight: 400;
+    }
+}
