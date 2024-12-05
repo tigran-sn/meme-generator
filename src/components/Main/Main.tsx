@@ -1,5 +1,5 @@
 /* eslint-disable no-debugger */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface IMeme {
   topText: string;
@@ -13,6 +13,15 @@ export default function Main() {
     bottomText: "Walk into Mordor",
     imageUrl: "https://imgflip.com/s/meme/One-Does-Not-Simply.jpg",
   });
+  const [allMemes, setAllMemes] = useState([]);
+
+  useEffect(() => {
+    fetch("https://api.imgflip.com/get_memes")
+      .then((res) => res.json())
+      .then((data) => {
+        setAllMemes(data.data.memes);
+      });
+  }, []);
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { value, name } = event.currentTarget;
