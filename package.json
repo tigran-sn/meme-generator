@@ -1,5 +1,6 @@
 {
   "name": "meme-generator",
+  "homepage": "https://tigran-sn.github.io/meme-generator",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -8,11 +9,14 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "setup:env": "cp .env.example .env"
+    "setup:env": "cp .env.example .env",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.32.1",
     "@huggingface/inference": "^2.8.1",
+    "gh-pages": "^6.2.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-markdown": "^9.0.1"
