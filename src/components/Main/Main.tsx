@@ -1,10 +1,19 @@
-/* eslint-disable no-debugger */
 import { useState, useEffect } from "react";
 
 interface IMeme {
   topText: string;
   bottomText: string;
   imageUrl: string;
+}
+
+interface IMemeServer {
+  id: string;
+  name: string;
+  url: string;
+  width: number;
+  height: number;
+  box_count: number;
+  captions: number;
 }
 
 export default function Main() {
@@ -31,6 +40,17 @@ export default function Main() {
     }));
   }
 
+  function getMemeImage(allMemes: IMemeServer[]) {
+    if (!Array.isArray(allMemes) || allMemes.length === 0) {
+      return undefined;
+    }
+    const randomMeme = allMemes[Math.floor(Math.random() * allMemes.length)];
+    setMeme((prevMeme: IMeme) => ({
+      ...prevMeme,
+      imageUrl: randomMeme.url,
+    }));
+  }
+
   return (
     <main>
       <div className="form">
@@ -53,7 +73,9 @@ export default function Main() {
             name="bottomText"
           />
         </label>
-        <button>Get a new meme image 🖼</button>
+        <button onClick={() => getMemeImage(allMemes)}>
+          Get a new meme image 🖼
+        </button>
       </div>
       <div className="meme">
         <img src={meme.imageUrl} />
